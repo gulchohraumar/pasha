@@ -6,7 +6,8 @@ export interface IVacancies {
     location: string,
     salary: string,
     email: string,
-    description: string,
+    details: string[],
+    requirement: string[],
 }
 
 export interface ISelect {
@@ -14,12 +15,12 @@ export interface ISelect {
     value: string
 }
 
-export interface IInformation {
-    information: string,
-}
+// export interface IInformation {
+//     information: string,
+// }
 
-export interface IRequirements {
-    requirement: string,
-}
+// export interface IRequirements {
+//     requirement: string,
+// }
 
 

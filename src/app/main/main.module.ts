@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { VacanciesComponent } from './vacancies/vacancies.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { DetailsVacancyComponent } from './vacancies/details-vacancy/details-vacancy.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
-    VacanciesComponent
+    VacanciesComponent,
+    DetailsVacancyComponent,
   ],
   imports: [
     CommonModule,

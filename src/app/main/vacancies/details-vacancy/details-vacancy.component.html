@@ -1,31 +1,64 @@
+<div class="row mt-2">
+  <div class="col-md-8 ">
+    <h2 class="mb-4 col-12 text-blue font-semibold">
+      {{vacancyData?.name}}
+    </h2>
+
+    <ng-container>
+      <p class="font-semibold mb-2">
+        Təsvir:
+      </p>
+
+      <ul class="ps-4 list-disc">
+        <li class="list-marker" *ngFor="let detail of vacancyData?.details">
+          {{detail}}
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-container>
+      <p class="font-semibold mt-3 mb-2">
+        Tələblər:
+      </p>
+
+      <ul class="ps-4 list-disc">
+        <li class="list-marker" *ngFor="let requirement of vacancyData?.requirement">
+          {{requirement}}
+        </li>
+      </ul>
+    </ng-container>
+
+  </div>
+
+  <div class="col-md-4">
+    <div class="bg-gray-100 text-sm p-3 rounded-lg">
+      <p class="">
+        <i class="text-pink me-2 fa-sharp fa-solid fa-location-dot"></i> Ünvan: {{vacancyData?.location}}
+      </p>
+      <p class="">
+        <i class="text-pink me-2 fa-solid fa-circle-dollar"></i>Əmək haqqı: {{vacancyData?.salary}} ₼
+      </p>
+
+      <p class="">
+        <i class="text-pink me-2 fa-solid fa-envelope"></i>CV göndərmək üçün e-poçt:
+        <a [href]="vacancyData?.email">{{vacancyData?.email}}</a>
+      </p>
+
+      <p class="">
+        <i class="text-pink me-2 fa-solid fa-calendar-days"></i>Elanın qoyulma tarixi:
+        {{vacancyData?.beginDate | date:'d.MM.y':'Asia/Baku'}}
+      </p>
+
+      <p class="">
+        <i class="text-pink me-2 fa-solid fa-calendar-days"></i>Son müraciət tarixi:
+        {{vacancyData?.endDate | date:'d.MM.y':'Asia/Baku'}}
+      </p>
+    </div>
+  </div>
+</div>
+
+
 <div class="row">
-    <div class="row">
-        <h2 class="col-12 text-blue font-semibold">
-            {{vacancyData?.name}}
-        </h2>
-    </div>
 
-    <div class="row mt-2">
-        <div class="col-md-8">
-            <!-- <p class=" col-12 font-medium m-0 mb-1">
-                Təsvir
-            </p> -->
-            <p>
-                {{vacancyData?.description}}
-            </p>
-        </div>
-
-        <div class="col-md-4 ps-5 bg-danger">
-            <p class="text-justify">
-                {{vacancyData?.location}}
-            </p>
-            <p class="text-justify">
-                <i class="me-1 fa-solid fa-circle-dollar"></i> {{vacancyData?.salary}}
-            </p>
-            <p class="text-justify">
-                {{vacancyData?.email}}
-            </p>
-        </div>
-    </div>
-
+  dsfhjslzvj;dsv
 </div>
