@@ -1,1 +1,31 @@
-<p>details-vacancy works!</p>
+<div class="row">
+    <div class="row">
+        <h2 class="col-12 text-blue font-semibold">
+            {{vacancyData?.name}}
+        </h2>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <!-- <p class=" col-12 font-medium m-0 mb-1">
+                Təsvir
+            </p> -->
+            <p>
+                {{vacancyData?.description}}
+            </p>
+        </div>
+
+        <div class="col-md-4 ps-5 bg-danger">
+            <p class="text-justify">
+                {{vacancyData?.location}}
+            </p>
+            <p class="text-justify">
+                <i class="me-1 fa-solid fa-circle-dollar"></i> {{vacancyData?.salary}}
+            </p>
+            <p class="text-justify">
+                {{vacancyData?.email}}
+            </p>
+        </div>
+    </div>
+
+</div>
