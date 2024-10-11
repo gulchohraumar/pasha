@@ -4,6 +4,14 @@ import { MainComponent } from './main.component';
 import { VacanciesComponent } from './vacancies/vacancies.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { DetailsVacancyComponent } from './vacancies/details-vacancy/details-vacancy.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
+import { TestFormComponent } from './vacancies/details-vacancy/test-form/test-form.component';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 @NgModule({
@@ -11,10 +19,18 @@ import { DetailsVacancyComponent } from './vacancies/details-vacancy/details-vac
     MainComponent,
     VacanciesComponent,
     DetailsVacancyComponent,
+    TestFormComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
+    MatButtonModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'az' }]
 })

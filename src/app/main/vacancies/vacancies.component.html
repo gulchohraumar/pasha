@@ -1,31 +1,41 @@
-<div class="row">
+<div class="row mt-4">
     <div class="col-md-4" *ngFor="let item of vacanciesList">
         <div class="rounded-lg px-3 py-4 box-shadows">
             <div class="row">
                 <h5 class="text-blue font-semibold">
-                    <i class="fa-solid fa-briefcase me-1"></i>   {{item.name}} 
+                    <i class="fa-solid fa-briefcase me-1"></i> {{item.name}}
                 </h5>
 
                 <div class=" col-12 text-xs d-flex align-items-center justify-content-between font-medium">
                     <span class="text-sm">
                         Bitmə tarixi:
                         <span class="bg-light-yellow text-xs text-dark-yellow inline-block p-2 ms-2 rounded-3xl">
-                            <i class="me-1 fa-regular fa-hourglass-start"></i> {{item.endDate | date:'d MMMM y':'Asia/Baku'}} 
+                            <i class="me-1 fa-regular fa-hourglass-start"></i> {{item.endDate | date:'d MMMM
+                            y':'Asia/Baku'}}
                         </span>
                     </span>
                 </div>
             </div>
 
-            <div class="row mt-4">
-                <p class=" text-justify vacancies-content">
-                    <!-- {{item.description}} -->
-                </p>
-                 
+            <div class="row mt-4 vacancies-content">
+                <ng-container>
+                    <p class="font-semibold mb-2">
+                        Təsvir:
+                    </p>
+
+                    <ul class="ps-4 list-disc">
+                        <li class="list-marker" *ngFor="let detail of item?.details">
+                            {{detail}}
+                        </li>
+                    </ul>
+                </ng-container>
+
             </div>
 
             <div class="row mt-4 justify-content-end">
                 <div class="col-md-6">
-                    <button [routerLink]="['../vacancies/' + item.id]" routerLinkActive="router-link-active"  class="col-12 p-2 font-medium rounded-lg text-white bg-pink">
+                    <button [routerLink]="['../vacancies/' + item.id]" routerLinkActive="router-link-active"
+                        class="col-12 p-2 font-medium rounded-lg text-white bg-pink">
                         Müraciət et
                     </button>
                 </div>

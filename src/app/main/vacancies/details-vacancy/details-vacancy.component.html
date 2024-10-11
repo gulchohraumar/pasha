@@ -1,4 +1,4 @@
-<div class="row mt-2">
+<div class="row mt-4">
   <div class="col-md-8 ">
     <h2 class="mb-4 col-12 text-blue font-semibold">
       {{vacancyData?.name}}
@@ -58,7 +58,115 @@
 </div>
 
 
-<div class="row">
+<mat-stepper class=" mt-4" [linear]="true" #stepper>
+  <mat-step [stepControl]="appealFormGroup" label="Müraciət formu">
+    <form [formGroup]="appealFormGroup">
+      <div class="row gap-y-2">
+        <div class="col-md-4 pt-1">
+          <div class="field mt-2">
+            <input required autocomplete="off" type="text" formControlName="fullname" id="fullname" name="fullname" />
+            <label for="fullname" title="Ad, soyad" data-title="Ad, soyad"></label>
+            <small class="error_text"
+              *ngIf="(AF['fullname'].errors?.['required'] && !isAppealValid) || (AF['fullname'].invalid && !isAppealValid)">
+              *Məcburi xana
+            </small>
+          </div>
+        </div>
 
-  dsfhjslzvj;dsv
-</div>
+        <div class="col-md-4 pt-1">
+          <div class="field mt-2">
+            <input autocomplete="off" required maxlength="10"
+              onkeypress='return event.charCode > 31 && (event.charCode >= 48 && event.charCode <= 57) && event.charCode != 46'
+              class="phoneNumber" type="text" formControlName="phoneNumber" id="phoneNumber" name="phoneNumber" />
+
+            <label for="phoneNumber" title="Nömrə" data-title="Nömrə"></label>
+
+            <small class="error_text"
+              *ngIf="(AF['phoneNumber'].errors?.['required'] && !isAppealValid) || (AF['phoneNumber'].invalid && !isAppealValid)">
+              *Zəhmət olmasa, düzgün telefon nömrəsi daxil edin
+            </small>
+          </div>
+        </div>
+
+        <div class="col-md-4 pt-1">
+          <div class="field mt-2">
+            <input autocomplete="off" required type="email" formControlName="email" id="email" name="email" />
+            <label for="email" title="Email" data-title="Email"></label>
+
+            <small class="error_text"
+              *ngIf="(AF['email'].errors?.['required'] && !isAppealValid) || (AF['email'].invalid && !isAppealValid)">
+              *Zəhmət olmasa, düzgün email ünvanı daxil edin
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4 justify-content-end">
+        <div class="col-md-1">
+          <button class="col-12 rounded-lg text-white bg-pink" style="font-weight: 600 !important;" mat-button
+            matStepperNext (click)="stepClickAppeal()">Sonrakı</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="examFormGroup" label="Test sualları">
+    <form [formGroup]="examFormGroup">
+
+      <!-- <div>
+        <h5>{{currentQuestionSet.question}}</h5>
+        <div *ngFor="let o of currentQuestionSet.questions">
+          <input type="radio" name="{{currentQuestionSet.id}}" value="{{o.optionid}}"
+            [(ngModel)]="currentQuestionSet.selected" />
+          <span>{{o.name}}</span>
+        </div>
+      </div> -->
+
+      <!-- <div class="col-md-12" style="margin: 0;" formArrayName="questions"
+        *ngFor="let t of questions.controls; let i = index; last as isLast; first as isFirst">
+        <div class="col-md-12" style="margin: 0 !important;" [formGroupName]="i">
+          {{this.questions.value[i]}}
+        </div>
+      </div> -->
+
+      <div class="row">
+        <p>
+          Hansi daha yaxsidi?
+        </p>
+
+        <div class="row">
+          <p>
+            <mat-radio-button value="chocolate" checked="true">Chocolate</mat-radio-button> Test
+          </p>
+          <p>
+            <mat-radio-button value="chocolate" checked="true">Chocolate</mat-radio-button> Test
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-4 justify-content-end">
+        <div class="col-md-1">
+          <button class="col-12 rounded-lg text-white bg-pink" style="font-weight: 600 !important;" mat-button
+            matStepperPrevious>
+            Əvvəlki
+          </button>
+        </div>
+
+        <div class="col-md-1">
+          <button class="col-12 rounded-lg text-white bg-pink" style="font-weight: 600 !important;" mat-button
+            matStepperNext (click)="stepClickAppeal()">
+            Sonrakı
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step label="CV Yükləmə">
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -56,4 +56,43 @@ export class MockDataService {
     },
 
   ]
+
+
+  testQuestionsData:any[] = [
+    {
+      question: 'Hansi duzgun cavabdir?',
+      options: [
+        {
+          value: false,
+          text: 'Answer 1'
+        },
+        {
+          value: false,
+          text: 'Answer 2'
+        },
+        {
+          value: false,
+          text: 'Answer 3'
+        },
+      ]
+    },
+
+    {
+      question: 'Hansi duzgun cavabdir 2?',
+      options: [
+        {
+          value: false,
+          text: 'Answer 2.1'
+        },
+        {
+          value: false,
+          text: 'Answer 2.2'
+        },
+        {
+          value: false,
+          text: 'Answer 2.3'
+        },
+      ]
+    },
+  ]
 }
