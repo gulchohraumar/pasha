@@ -88,6 +88,10 @@ input[type=number] {
     color: #032766;
 }
 
+.border-blue{
+    border: 1px dashed #032766c9;
+}
+
 .bg-blue{
     background-color: #032766;
 }
@@ -166,4 +170,21 @@ input[type=number] {
             color: #2F7B96;
         }
     }
+}
+
+.selectfileInputPay {
+    position: absolute !important;
+    width: 96% !important;
+    height: 100% !important;
+    opacity: 0;
+  }
+
+.file{
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    cursor: pointer;
+    height: 20vh;
 }

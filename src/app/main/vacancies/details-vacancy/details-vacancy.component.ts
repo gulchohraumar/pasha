@@ -102,6 +102,21 @@ export class DetailsVacancyComponent {
     });
   }
 
+  fileLocalUrl = '';
+  fileName = '';
+  file?: File | null = null;
+  fileResult: string | ArrayBuffer | null = null;
+
+  uploadFile(event: any) {
+    this.fileLocalUrl = URL.createObjectURL(event.target.files[0])
+    this.file = event.target.files[0];
+    this.fileResult = event.target.result; 
+    this.fileName = event.target.files[0].name;
+
+    console.log(event.target.files[0])
+    console.log(event.target.files[0].size)
+  }
+
   // next() {
   //   this.currentIndex = this.currentIndex + 1;
   //   this.currentQuestionSet = this.questions[this.currentIndex];
