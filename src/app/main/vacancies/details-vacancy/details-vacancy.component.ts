@@ -39,15 +39,51 @@ export class DetailsVacancyComponent {
         text: 'İmtahan ümumi 15 sualdan ibarətdir. Hər sual üçün sizə 1 dəqiqə vaxt verilir və imtahan 15 dəqiqə çəkir. Sonrakı suala keçdikdən sonra geri qayıdıb əvvəlki sualı dəyişdirmək imkanınız yoxdur.',
         icon: 'warning',
         confirmButtonColor: '#266AB8',
-        confirmButtonText: 'Başa düşdüm',
+        confirmButtonText: 'İmtahana başla',
       }).then((result) => {
         if (result.isConfirmed) {
-
-
+          this.timer(15);
+          this.next(); 
         }
       })
 
     } else this.isAppealValid = false
+  }
+
+  display: any;
+  timer(minute: number) {
+    let seconds: number = minute * 60;
+    let textSec: any = "0";
+    let statSec: number = 60;
+
+    const prefix = minute < 10 ? "0" : "";
+
+    const timer = setInterval(() => {
+      seconds--;
+      if (statSec != 0) statSec--;
+      else statSec = 59;
+
+      if (statSec < 10) {
+        textSec = "0" + statSec;
+      } else textSec = statSec;
+
+      this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
+
+      if (seconds == 0) {
+        clearInterval(timer);
+        // Swal.fire({
+        //   title: 'İmtahan qaydaları',
+        //   text: 'İmtahan ümumi 15 sualdan ibarətdir. Hər sual üçün sizə 1 dəqiqə vaxt verilir və imtahan 15 dəqiqə çəkir. Sonrakı suala keçdikdən sonra geri qayıdıb əvvəlki sualı dəyişdirmək imkanınız yoxdur.',
+        //   icon: 'warning',
+        //   confirmButtonColor: '#266AB8',
+        //   confirmButtonText: 'İmtahana başla',
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
+        //     this.timer(15)
+        //   }
+        // });
+      }
+    }, 1000);
   }
 
   isFirst = false;
@@ -110,16 +146,19 @@ export class DetailsVacancyComponent {
   uploadFile(event: any) {
     this.fileLocalUrl = URL.createObjectURL(event.target.files[0])
     this.file = event.target.files[0];
-    this.fileResult = event.target.result; 
+    this.fileResult = event.target.result;
     this.fileName = event.target.files[0].name;
-
-    console.log(event.target.files[0])
-    console.log(event.target.files[0].size)
   }
 
-  // next() {
-  //   this.currentIndex = this.currentIndex + 1;
-  //   this.currentQuestionSet = this.questions[this.currentIndex];
-  // }
+  currentIndex = 0;
+  currentQuestionSet: any;
+
+  next() {
+    this.currentIndex = this.currentIndex + 1;
+    this.currentQuestionSet = this.mockDataService.testQuestionsData[this.currentIndex-1];
+    console.log(this.mockDataService.testQuestionsData);  
+    console.log(this.currentIndex);  
+    console.log(this.currentQuestionSet);  
+  }
 
 }

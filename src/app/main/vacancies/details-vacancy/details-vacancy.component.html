@@ -57,7 +57,6 @@
   </div>
 </div>
 
-
 <mat-stepper class=" mt-4" [linear]="true" #stepper>
   <mat-step [stepControl]="appealFormGroup" label="Müraciət formu">
     <!-- <p class="text-blue font-semibold">
@@ -135,20 +134,23 @@
 
       <div class="row">
         <p>
-          Hansi daha yaxsidi?
+          {{currentQuestionSet?.question}}
         </p>
 
         <div class="row">
-          <p>
-            <mat-radio-button value="chocolate" checked="true">Chocolate</mat-radio-button> Test
-          </p>
-          <p>
-            <mat-radio-button value="chocolate" checked="true">Chocolate</mat-radio-button> Test
+          <p *ngFor="let item of currentQuestionSet?.options">
+            <mat-radio-button [value]="item.value" [(ngModel)]="currentQuestionSet.selected"> </mat-radio-button> {{item.text}} 
           </p>
         </div>
       </div>
 
-      <div class="row mt-4 justify-content-end">
+      <div class="row justify-content-end">
+        <button (click)="next()" class="btn bg-danger col-2">
+          Next
+        </button>
+      </div>
+
+      <!-- <div class="row mt-4 justify-content-end">
         <div class="col-md-1">
           <button class="col-12 rounded-lg text-white bg-pink" style="font-weight: 600 !important;" mat-button
             matStepperPrevious>
@@ -162,7 +164,7 @@
             Sonrakı
           </button>
         </div>
-      </div>
+      </div> -->
     </form>
   </mat-step>
 
@@ -170,14 +172,15 @@
     <form [formGroup]="examFormGroup">
 
       <div class="row">
-        <label for="file-upload" class="file opacity-75 custom-file-upload text-blue font-medium  d-flex align-items-center flex-column justify-content-center border-blue rounded-lg">
+        <label for="file-upload"
+          class="file opacity-75 custom-file-upload text-blue font-medium  d-flex align-items-center flex-column justify-content-center border-blue rounded-lg">
           <span *ngIf="fileName; else fileNotExcist">
             <i class="fa-regular fa-file-lines"></i> {{fileName}}
           </span>
 
           <ng-template #fileNotExcist>
             <i class="fa-regular mb-3 text-blue fa-cloud-arrow-up text-4xl"></i>
-            Zəhmət olmasa, CV-zi faylınızı sürüşdürüb atın və ya qovluqdan seçin.
+            Zəhmət olmasa, CV faylınızı sürüşdürüb atın və ya qovluqdan seçin.
           </ng-template>
 
           <input (change)="uploadFile($event)" class="d-none" type="file" id="file-upload" accept=".pdf, .docx" />
