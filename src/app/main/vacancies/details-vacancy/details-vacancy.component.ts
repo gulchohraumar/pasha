@@ -1,5 +1,6 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute } from '@angular/router';
 import { IVacancies } from 'src/app/models/IVacancies';
 import { MockDataService } from 'src/app/services/mockData.service';
@@ -13,6 +14,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./details-vacancy.component.scss']
 })
 export class DetailsVacancyComponent {
+
+  constructor(
+    private data: MockDataService,
+    private fb: FormBuilder,
+    public mockDataService: MockDataService,
+    private ActivatedRoute: ActivatedRoute,
+  ) { }
+
   @ViewChild('stepper') stepper: any;
 
   appealFormGroup = this.fb.group({
@@ -21,15 +30,7 @@ export class DetailsVacancyComponent {
     phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
   });
 
-  secondFormGroup = this.fb.group({
-    secondCtrl: [''],
-  });
-
   isAppealValid = true;
-  get AF(): { [key: string]: AbstractControl } {
-    return this.appealFormGroup.controls;
-  }
-
   stepClickAppeal() {
     if (this.appealFormGroup.valid) {
       this.isAppealValid = true
@@ -42,8 +43,8 @@ export class DetailsVacancyComponent {
         confirmButtonText: 'İmtahana başla',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.timer(15);
-          this.next(); 
+          this.timer(1);
+          this.next('');
         }
       })
 
@@ -71,66 +72,27 @@ export class DetailsVacancyComponent {
 
       if (seconds == 0) {
         clearInterval(timer);
-        // Swal.fire({
-        //   title: 'İmtahan qaydaları',
-        //   text: 'İmtahan ümumi 15 sualdan ibarətdir. Hər sual üçün sizə 1 dəqiqə vaxt verilir və imtahan 15 dəqiqə çəkir. Sonrakı suala keçdikdən sonra geri qayıdıb əvvəlki sualı dəyişdirmək imkanınız yoxdur.',
-        //   icon: 'warning',
-        //   confirmButtonColor: '#266AB8',
-        //   confirmButtonText: 'İmtahana başla',
-        // }).then((result) => {
-        //   if (result.isConfirmed) {
-        //     this.timer(15)
-        //   }
-        // });
+
+        Swal.fire({
+          text: 'Hörmətli istifadəçi, təəsüf ki, imtahanın vaxtı bitmişdir!',
+          // text: 'İmtahan ümumi 15 sualdan ibarətdir. Hər sual üçün sizə 1 dəqiqə vaxt verilir və imtahan 15 dəqiqə çəkir. Sonrakı suala keçdikdən sonra geri qayıdıb əvvəlki sualı dəyişdirmək imkanınız yoxdur.',
+          icon: 'warning',
+          confirmButtonColor: '#266AB8',
+          confirmButtonText: 'Bağla',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            
+          }
+        });
       }
     }, 1000);
   }
 
-  isFirst = false;
-  isSecond = false;
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'number';
   }
-  // stepClick(event:any){
-  //   console.log(event.selectedIndex)
-  //   this.appealFormGroup.valid && event.selectedIndex == 1 ? this.isFirst= true : this.isFirst= false
-
-  // }
-
-  constructor(
-    private data: MockDataService,
-    private fb: FormBuilder,
-    private mockDataService: MockDataService,
-    private ActivatedRoute: ActivatedRoute,
-  ) { }
 
   vacancyData!: IVacancies;
-
-  examFormGroup = this.fb.group({
-    // isValid: false,
-    // questions: this.fb.array([])
-  })
-
-  // get questions() {
-  //   return this.examFormGroup.get("questions") as FormArray;
-  // }
-
-  // currentIndex = 0;
-  // next() {
-  //   this.questions.push(this.newLangs(this.mockDataService.testQuestionsData[this.currentIndex]))
-  //   this.currentIndex = this.currentIndex + 1;
-
-  //   console.log(this.questions)
-  // }
-
-  // newLangs(dt: any): FormGroup {
-  //   console.log(dt.options)
-  //   return this.fb.group({
-  //     value: dt.value,
-  //     text: dt.text
-  //   });
-  // }
-
   ngOnInit() {
     this.ActivatedRoute.paramMap.subscribe(params => {
       let id = Number(params.get('id'));
@@ -150,15 +112,30 @@ export class DetailsVacancyComponent {
     this.fileName = event.target.files[0].name;
   }
 
-  currentIndex = 0;
+  currentIndex: number = 0;
   currentQuestionSet: any;
+  isAnswered: boolean = true;
 
-  next() {
-    this.currentIndex = this.currentIndex + 1;
-    this.currentQuestionSet = this.mockDataService.testQuestionsData[this.currentIndex-1];
-    console.log(this.mockDataService.testQuestionsData);  
-    console.log(this.currentIndex);  
-    console.log(this.currentQuestionSet);  
+  next(stepper: any) {
+    if (this.currentQuestionSet && !this.currentQuestionSet?.selected) {  
+      this.isAnswered = false;
+      return
+    } // not selected answer
+
+    this.isAnswered = true;
+    if (this.mockDataService.testQuestionsData.length != this.currentIndex) { //if it is not last question
+      this.currentIndex = this.currentIndex + 1;
+      this.currentQuestionSet = this.mockDataService.testQuestionsData[this.currentIndex - 1];
+    }
+
+    else {
+      stepper.selected!.completed = true;
+      stepper.next();
+    }
+  }
+
+  handleSend(){
+    
   }
 
 }

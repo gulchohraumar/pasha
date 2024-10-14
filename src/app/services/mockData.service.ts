@@ -60,6 +60,7 @@ export class MockDataService {
 
   testQuestionsData:any[] = [
     {
+      id:0,
       question: '1 Hansi duzgun cavabdir?',
       answer: 1,
       selected: 0,
@@ -80,6 +81,7 @@ export class MockDataService {
     },
 
     {
+      id:1,
       question: '2 Hansi duzgun cavabdir 2?',
       answer: 3,
       selected: 0,
@@ -100,6 +102,7 @@ export class MockDataService {
     },
 
     {
+      id:2,
       question: '3 Hansi duzgun cavabdir 2?',
       answer: 2,
       selected: 0,
