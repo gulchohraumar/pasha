@@ -1,6 +1,6 @@
-// ::ng-deep .mat-horizontal-stepper-header{
-//     pointer-events: none !important;
-// }
+::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}
 
 ::ng-deep  .mat-step-header.cdk-program-focused{
      background-color: #fff !important; 
@@ -39,4 +39,9 @@
 
 ::ng-deep .mat-mdc-radio-button .mdc-radio {
     padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled:checked+.mdc-radio__background .mdc-radio__outer-circle,
+::ng-deep .mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
+    border-color: #CF2874 !important;
 }

@@ -126,6 +126,7 @@ input[type=number] {
     font-size: 12px;
     top: -10px;
     background: #fff;
+    color: #266AB8;
     border-radius: 5px;
     padding: 0 6px;
     left: 13px;
@@ -167,7 +168,7 @@ input[type=number] {
         }
         &:focus + label::before {
             @extend .label-before;
-            color: #2F7B96;
+            color: #266AB8;
         }
     }
 }

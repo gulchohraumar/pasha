@@ -57,7 +57,7 @@
   </div>
 </div>
 
-<mat-stepper class=" mt-4" [linear]="true" #stepper>
+<mat-stepper class="poppins-thin mt-4" [linear]="true" #stepper>
   <mat-step [stepControl]="appealFormGroup" label="Müraciət formu">
     <!-- <p class="text-blue font-semibold">
       Zəhmət olmasa, müraciət formunu doldurun:
@@ -104,7 +104,7 @@
         </div>
       </div>
 
-      <div class="row mt-4 justify-content-end">
+      <div class="row mt-4 justify-content-end ">
         <div class="col-md-1">
           <button class="col-12 rounded-lg text-white bg-pink" style="font-weight: 600 !important;" mat-button
             matStepperNext (click)="stepClickAppeal()">Sonrakı</button>
@@ -114,18 +114,20 @@
   </mat-step>
 
   <mat-step label="Test sualları">
-    <div class="row">
-      <div class="col-12 error_text font-semibold text-end">
-        İmtahanın bitməsinə qalan vaxt: {{display}}
+    <div class="row" *ngIf="display">
+      <div class="col-12 font-semibold text-blue text-end">
+        Qalan vaxt: <span class="error_text">{{display}}</span>
       </div>
     </div>
 
-    <div class="row">
-      <p>
-        {{currentQuestionSet?.question}}
-      </p>
+    <div class="row mt-4">
+      <div class="col-12">
+        <p class="font-medium">
+          {{currentQuestionSet?.id + 1}}. {{currentQuestionSet?.question}}
+        </p>
+      </div>
 
-      <div class="row">
+      <div class="row col-12">
         <p *ngFor="let item of currentQuestionSet?.options">
           <mat-radio-button name="fieldName" ngDefaultControl [value]="item.value"
             [(ngModel)]="currentQuestionSet.selected"> </mat-radio-button>
@@ -134,16 +136,17 @@
       </div>
     </div>
 
-    <div class="row justify-content-end align-items-center">
-      <span *ngIf="!isAnswered" class="error_text me-3 col-md-5 text-end">
+    <div *ngIf="!isAnswered" class="row mb-2 justify-content-end align-items-center">
+      <span class="error_text font-semibold col-md-5 text-end">
         Zəhmət olmasa, sualı cavablandırın!
       </span>
+    </div>
 
-      <div class="col-md-1"
-        [ngClass]="{'col-md-2': this.mockDataService.testQuestionsData.length != this.currentIndex}">
+    <div class="row justify-content-end align-items-center">
+      <div class="col-md-1" [ngClass]="{'col-md-2': this.questions.length != this.currentIndex}">
         <button class="col-12 rounded-lg text-white bg-pink" style="font-weight: 600 !important;" mat-button
           (click)="next(stepper)">
-          {{this.mockDataService.testQuestionsData.length != this.currentIndex ? 'Sonrakı sual' : 'Bitir'}}
+          {{this.questions.length != this.currentIndex ? 'Sonrakı sual' : 'Bitir'}}
         </button>
       </div>
     </div>

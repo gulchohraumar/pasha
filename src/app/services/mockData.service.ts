@@ -58,68 +58,341 @@ export class MockDataService {
   ]
 
 
-  testQuestionsData:any[] = [
+  testQuestionsData: any[] = [
     {
-      id:0,
-      question: '1 Hansi duzgun cavabdir?',
+      id: 0,
+      question: 'What is the difference between == and === in JavaScript?',
       answer: 1,
       selected: 0,
       options: [
         {
           value: 1,
-          text: 'Answer 1'
+          text: '== checks for value equality with type coercion, whereas === checks for both value and type equality without type coercion.'
         },
         {
           value: 2,
-          text: 'Answer 2'
+          text: 'Both check value equality without type coercion.'
         },
         {
           value: 3,
-          text: 'Answer 3'
+          text: 'Both check type equality with type coercion.'
         },
       ]
     },
 
-    {
-      id:1,
-      question: '2 Hansi duzgun cavabdir 2?',
-      answer: 3,
-      selected: 0,
-      options: [
-        {
-          value: 1,
-          text: 'Answer 2.1'
-        },
-        {
-          value: 2,
-          text: 'Answer 2.2'
-        },
-        {
-          value: 3,
-          text: 'Answer 2.3'
-        },
-      ]
-    },
+    // {
+    //   id: 1,
+    //   question: 'What is adaptive design? ',
+    //   answer: 3,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'Allow to change font-sizes.'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'Change colors as you like.'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'Delivers specific layouts for different screen sizes.'
+    //     },
+    //   ]
+    // },
 
-    {
-      id:2,
-      question: '3 Hansi duzgun cavabdir 2?',
-      answer: 2,
-      selected: 0,
-      options: [
-        {
-          value: 1,
-          text: 'Answer 2.1'
-        },
-        {
-          value: 2,
-          text: 'Answer 2.2'
-        },
-        {
-          value: 3,
-          text: 'Answer 2.3'
-        },
-      ]
-    },
+    // {
+    //   id: 2,
+    //   question: 'What is jQuery?',
+    //   answer: 2,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'A framework'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'A library'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'None of these'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 3,
+    //   question: 'Which HTML5 element defines navigation links?',
+    //   answer: 3,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'links'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'navigate'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'nav'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 4,
+    //   question: 'How can you print information to the console?',
+    //   answer: 1,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'console.log(info)'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'console(info)'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'print(info)'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 5,
+    //   question: 'What keyword is used to create a JavaScript variable?',
+    //   answer: 1,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'var'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'string'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'variable'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 6,
+    //   question: 'Which of the following function of Array object removes the last element from an array and returns that element?',
+    //   answer: 3,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'map()'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'push()'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'pop()'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 7,
+    //   question: 'What property is used to change the text color of an element?',
+    //   answer: 2,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'fontcolor'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'color'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'textColor'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 8,
+    //   question: 'Inside which HTML element do we put the JavaScript?',
+    //   answer: 2,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'JS'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'script'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'link'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 9,
+    //   question: 'What is not an HTML5 element?',
+    //   answer: 1,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'blink'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'section'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'main'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 10,
+    //   question: 'Which snippet of CSS is commonly used to center a website horizontally?',
+    //   answer: 2,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'site-align: center;'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'margin: 0 auto;'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'margin: center;'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 11,
+    //   question: 'Which is not a JavaScript data type?',
+    //   answer: 3,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'undefined'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'boolean'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'double'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 12,
+    //   question: 'Which doctype is correct for HTML5?',
+    //   answer: 1,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: '!DOCTYPE html'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: '!DOCTYPE'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: '!DOCTYPE HTML5'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 13,
+    //   question: "How do you call the function 'myFunction'?",
+    //   answer: 2,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'myFunction'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'myFunction()'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'func myFunction()'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 14,
+    //   question: "The # symbol specifies that the selector is?",
+    //   answer: 2,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'class'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'id'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'tag'
+    //     },
+    //   ]
+    // },
+
+    // {
+    //   id: 15,
+    //   question: "var a = []; What does 'typeof a' return?",
+    //   answer: 1,
+    //   selected: 0,
+    //   options: [
+    //     {
+    //       value: 1,
+    //       text: 'object'
+    //     },
+    //     {
+    //       value: 2,
+    //       text: 'array'
+    //     },
+    //     {
+    //       value: 3,
+    //       text: 'undefined'
+    //     },
+    //   ]
+    // },
   ]
 }

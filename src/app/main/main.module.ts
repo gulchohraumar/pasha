@@ -9,7 +9,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
-import { TestFormComponent } from './vacancies/details-vacancy/test-form/test-form.component';
 import {MatRadioModule} from '@angular/material/radio';
 
 
@@ -19,7 +18,6 @@ import {MatRadioModule} from '@angular/material/radio';
     MainComponent,
     VacanciesComponent,
     DetailsVacancyComponent,
-    TestFormComponent,
   ],
   imports: [
     CommonModule,
