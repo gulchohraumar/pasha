@@ -1,7 +1,7 @@
 <div class="row mt-4 px-2 animate-fade-in">
     <div class="col-md-12 bg-slate-100  rounded-lg p-5">
         <div class="col-12 text-center">
-            <i class="text-9xl text-text-green fa-regular fa-circle-check"></i>
+            <i class="text-9xl text-green fa-regular fa-circle-check"></i>
 
             <h4 class="mt-4 text-blue">
                 Məlumatlarınız və imtahan nəticəniz uğurla göndərildi.
@@ -11,23 +11,13 @@
         <div class="row gap-y-3 font-semibold mt-5 align-items-center justify-content-center">
             <div class="col-md-4 text-blue text-center">
                 <p class="text-pink text-2xl mb-2">{{data?.correctCount || 0}}</p>
-                Düzgün cavabların sayı
+                Ümumi toplanan bal
             </div>
-
-            <!-- <div class="col-md-2 text-blue text-center text-pink text-5xl mb-2">
-                {{ (((data?.correctCount*100) / data?.totalCount) || 0) | number: '1.0-0'}} %
-            </div> -->
 
             <div class="col-md-4 text-blue text-center">
-                <p class="text-pink text-2xl mb-2">{{data?.incorrectCount || 0}}</p>
-                Səhv cavabların sayı
+                <p class="text-pink text-2xl mb-2">{{ (((data?.correctCount*100) / data?.totalCount) || 0) | number: '1.0-0'}} %</p>
+                Müvəffəqiyyət faizi
             </div>
-
-            <!-- <div class="col-md-4 text-center">
-                <p class="text-pink text-2xl mb-2">1</p>
-                Cavablandırılmayan sualların sayı
-            </div> -->
-
         </div>
 
     </div>
