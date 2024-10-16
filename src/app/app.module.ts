@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import localeAz from '@angular/common/locales/az';  // Azerbaijani locale data
 import { registerLocaleData } from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 registerLocaleData(localeAz); 
 
@@ -30,6 +31,7 @@ registerLocaleData(localeAz);
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule.withConfig({callSetDisabledState: 'whenDisabledForLegacyCode'}),
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -22,13 +22,11 @@ export class DetailsVacancyComponent {
     public mockDataService: MockDataService,
     private ActivatedRoute: ActivatedRoute,
   ) { 
-
     this.ActivatedRoute.paramMap.subscribe(params => {
       let id = Number(params.get('id'));
       this.vacancyData = this.data.vacancies.filter((dt: IVacancies) => dt.id == id)[0];
       this.questions = this.data.vacanciesQuestion.filter((dt: IVacanciesAllQuestions) => dt.vacancyId == id)[0].data
     });
-
   }
 
   appealFormGroup = this.fb.group({
@@ -101,28 +99,10 @@ export class DetailsVacancyComponent {
     this.stepper._getIndicatorType = () => 'number';
   }
 
-  fileLocalUrl = '';
-  fileName = '';
-  file?: File | null = null;
-  fileResult: string | ArrayBuffer | null = null;
-
-  uploadFile(event: any) {
-    if (event.target.files[0].size > 5242880) {
-      swalInfo('Daxil etdiyiniz faylın ölçüsü 5MB-dan çox ola bilməz!')
-      return;
-    }
-
-    this.fileLocalUrl = URL.createObjectURL(event.target.files[0])
-    this.file = event.target.files[0];
-    this.fileResult = event.target.result;
-    this.fileName = event.target.files[0].name;
-  }
-
   currentIndex: number = 0;
   currentQuestionSet: any;
   isAnswered: boolean = true;
   questions: any[] = [];
-
   setAnswer(event: MatRadioChange) {
     this.currentQuestionSet ? this.currentQuestionSet.selected = String(event.value) : '';
     this.isAnswered = true;
@@ -149,24 +129,36 @@ export class DetailsVacancyComponent {
     stepper.next();
   }
 
+  fileLocalUrl = '';
+  fileName = '';
+  file?: File | null = null;
+  fileResult: string | ArrayBuffer | null = null;
+  uploadFile(event: any) {
+    if (event.target.files[0].size > 5242880) {
+      swalInfo('Daxil etdiyiniz faylın ölçüsü 5MB-dan çox ola bilməz!')
+      return;
+    }
+
+    this.fileLocalUrl = URL.createObjectURL(event.target.files[0])
+    this.file = event.target.files[0];
+    this.fileResult = event.target.result;
+    this.fileName = event.target.files[0].name;
+
+    this.handleSend();
+  }
+
   correctAnswerCount = 0;
   incorrectAnswerCount = 0;
   successModel: any;
-
   handleSend() {
-
-    if (this.file) {
-      // console.log(this.appealFormGroup.value);
-      // console.log(this.questions);
       this.questions.map((dt: any) => {
         dt.answer == Number(dt.selected) ? this.correctAnswerCount = this.correctAnswerCount + 1 : this.incorrectAnswerCount = this.incorrectAnswerCount + 1;
       })
       this.successModel = {
         correctCount: this.correctAnswerCount,
-        incorrectCount: this.incorrectAnswerCount
+        incorrectCount: this.incorrectAnswerCount,
+        totalCount: this.questions.length
       }
-    }
-    else swalInfo('Zəhmət olmasa, CV-i daxil edin.')
   }
 
 }

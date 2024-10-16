@@ -29,8 +29,10 @@ export class MockDataService {
         'JavaScript üzrə dərin biliklər (DOM manipulasiyası, ES6 daxil olmaqla).',
         'TypeScript və TSX ilə praktiki təcrübə.',
         'CI/CD pipeline və tool-ları haqqında məlumat.'
-      ]
+      ],
+      status: true,
     },
+    
     {
       id: 2,
       name: 'Baş mühasib',
@@ -52,7 +54,8 @@ export class MockDataService {
         'Müvafiq sahədə 3-5 il və üzəri iş təcrübəsi.',
         'MS Office proqramlarında, Exceldə əla işləmə bacarığı.',
         'Dəqiqlik, detallara fikir vermə qabiliyyəti.'
-      ]
+      ],
+      status: true,
     },
 
   ]
@@ -692,8 +695,6 @@ export class MockDataService {
     },
 
   ]
-
-
 
   vacanciesQuestion: IVacanciesAllQuestions[] = [
     {

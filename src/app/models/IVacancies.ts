@@ -8,6 +8,7 @@ export interface IVacancies {
     email: string,
     details: string[], 
     requirement: string[],
+    status: boolean
 }
 
 export interface ISelect {

@@ -4,15 +4,19 @@
             <i class="text-9xl text-orange fa-regular fa-circle-check"></i>
 
             <h4 class="mt-4 text-blue">
-                Sizin nəticəniz uğurla göndərildi.
+                Məlumatlarınız və imtahan nəticəniz uğurla göndərildi.
             </h4>
         </div>
 
-        <div class="row gap-y-3 font-semibold mt-5 justify-content-center">
+        <div class="row gap-y-3 font-semibold mt-5 align-items-center justify-content-center">
             <div class="col-md-4 text-blue text-center">
                 <p class="text-pink text-2xl mb-2">{{data?.correctCount || 0}}</p>
                 Düzgün cavabların sayı
             </div>
+
+            <!-- <div class="col-md-2 text-blue text-center text-pink text-5xl mb-2">
+                {{ (((data?.correctCount*100) / data?.totalCount) || 0) | number: '1.0-0'}} %
+            </div> -->
 
             <div class="col-md-4 text-blue text-center">
                 <p class="text-pink text-2xl mb-2">{{data?.incorrectCount || 0}}</p>
