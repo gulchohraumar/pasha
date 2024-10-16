@@ -10,6 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
+import { ResultComponentsComponent } from './vacancies/result-components/result-components.component';
 
 
 
@@ -18,6 +19,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MainComponent,
     VacanciesComponent,
     DetailsVacancyComponent,
+    ResultComponentsComponent,
   ],
   imports: [
     CommonModule,

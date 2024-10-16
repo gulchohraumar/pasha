@@ -6,7 +6,7 @@ export interface IVacancies {
     location: string,
     salary: string,
     email: string,
-    details: string[],
+    details: string[], 
     requirement: string[],
 }
 
@@ -15,12 +15,22 @@ export interface ISelect {
     value: string
 }
 
-// export interface IInformation {
-//     information: string,
-// }
+interface ITestOptions {
+    value: number,
+    text: string
+}
 
-// export interface IRequirements {
-//     requirement: string,
-// }
+export interface ITestQuestion {
+    id: number,
+    question: string,
+    answer: number,
+    selected: number | string,
+    options: ITestOptions []
+}
+
+export interface IVacanciesAllQuestions {
+    vacancyId: number,
+    data: ITestQuestion []
+}
 
 

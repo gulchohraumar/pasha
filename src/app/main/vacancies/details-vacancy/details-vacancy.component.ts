@@ -1,8 +1,9 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatRadioChange } from '@angular/material/radio';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute } from '@angular/router';
-import { IVacancies } from 'src/app/models/IVacancies';
+import { IVacancies, IVacanciesAllQuestions } from 'src/app/models/IVacancies';
 import { MockDataService } from 'src/app/services/mockData.service';
 import { swalInfo } from 'src/app/utils/alerts';
 import Swal from 'sweetalert2';
@@ -20,9 +21,15 @@ export class DetailsVacancyComponent {
     private fb: FormBuilder,
     public mockDataService: MockDataService,
     private ActivatedRoute: ActivatedRoute,
-  ) { }
+  ) { 
 
-  @ViewChild('stepper') stepper: any;
+    this.ActivatedRoute.paramMap.subscribe(params => {
+      let id = Number(params.get('id'));
+      this.vacancyData = this.data.vacancies.filter((dt: IVacancies) => dt.id == id)[0];
+      this.questions = this.data.vacanciesQuestion.filter((dt: IVacanciesAllQuestions) => dt.vacancyId == id)[0].data
+    });
+
+  }
 
   appealFormGroup = this.fb.group({
     fullname: ['', Validators.required],
@@ -30,20 +37,24 @@ export class DetailsVacancyComponent {
     phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
   });
 
+  vacancyData!: IVacancies;
+  @ViewChild('stepper') stepper!: MatStepper;
+
   isAppealValid = true;
   stepClickAppeal() {
     if (this.appealFormGroup.valid) {
       this.isAppealValid = true
       this.display = null;
       Swal.fire({
+        allowOutsideClick: false,
         title: 'İmtahan qaydaları',
-        text: 'İmtahan ümumi 15 sualdan ibarətdir. Hər sual üçün sizə 1 dəqiqə vaxt verilir və imtahan 15 dəqiqə çəkir. Sonrakı suala keçdikdən sonra geri qayıdıb əvvəlki sualı dəyişdirmək imkanınız yoxdur.',
+        text: `İmtahan ümumi ${this.questions.length} sualdan ibarətdir. Hər sual üçün sizə 1 dəqiqə vaxt verilir və imtahan ${this.questions.length} dəqiqə çəkir. Sonrakı suala keçdikdən sonra geri qayıdıb əvvəlki sualı dəyişdirmək imkanınız yoxdur.`,
         icon: 'warning',
         confirmButtonColor: '#266AB8',
         confirmButtonText: 'İmtahana başla',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.timer(this.mockDataService.testQuestionsData.length);
+          this.timer(this.questions.length);
           this.next('');
         }
       })
@@ -73,13 +84,13 @@ export class DetailsVacancyComponent {
       if (seconds == 0) {
         clearInterval(timer);
         Swal.fire({
-          text: 'Hörmətli istifadəçi, təəsüf ki, imtahanın vaxtı bitmişdir!',
+          text: 'Hörmətli istifadəçi, təəsüf ki, imtahanın vaxtı bitmişdir! Əvvəlki cavablarınız yadda saxlanılmışdır.',
           icon: 'warning',
           confirmButtonColor: '#266AB8',
           confirmButtonText: 'Bağla',
         }).then((result) => {
           if (result.isConfirmed) {
-
+            this.setNextStepper(this.stepper);
           }
         });
       }
@@ -88,15 +99,6 @@ export class DetailsVacancyComponent {
 
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'number';
-  }
-
-  vacancyData!: IVacancies;
-  ngOnInit() {
-    this.questions = [...this.mockDataService.testQuestionsData];
-    this.ActivatedRoute.paramMap.subscribe(params => {
-      let id = Number(params.get('id'));
-      this.vacancyData = this.data.vacancies.filter((dt: any) => dt.id == id)[0];
-    });
   }
 
   fileLocalUrl = '';
@@ -121,46 +123,50 @@ export class DetailsVacancyComponent {
   isAnswered: boolean = true;
   questions: any[] = [];
 
+  setAnswer(event: MatRadioChange) {
+    this.currentQuestionSet ? this.currentQuestionSet.selected = String(event.value) : '';
+    this.isAnswered = true;
+  }
+
   next(stepper: any) {
     if (this.currentQuestionSet && !this.currentQuestionSet?.selected) {
       this.isAnswered = false;
       return
     } // not selected answer
 
-    this.isAnswered = true;
     if (this.questions.length != this.currentIndex) { //if it is not last question
       this.currentIndex = this.currentIndex + 1;
       this.currentQuestionSet = this.questions[this.currentIndex - 1];
     }
 
     else {
-      stepper.selected!.completed = true;
-      stepper.next();
+      this.setNextStepper(stepper)
     }
-    console.log(this.currentQuestionSet)
   }
 
-  // prev(stepper: MatStepper) {
-  //   Swal.fire({
-  //     text: 'Geri qayıtsanız nəticələriniz silinəcək. Qayıtmaq istədiyinizdən əminsiniz?',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#266AB8',
-  //     cancelButtonColor: 'red',
-  //     confirmButtonText: 'Bəli',
-  //     cancelButtonText: 'Bağla'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.questions = [...this.mockDataService.testQuestionsData];
-  //       stepper.previous();
-  //     }
-  //   })
-  // }
+  setNextStepper(stepper: MatStepper) {
+    stepper.selected!.completed = true;
+    stepper.next();
+  }
+
+  correctAnswerCount = 0;
+  incorrectAnswerCount = 0;
+  successModel: any;
 
   handleSend() {
-    console.log(this.appealFormGroup.value);
-    console.log(this.questions);
-    console.log(this.file);
+
+    if (this.file) {
+      // console.log(this.appealFormGroup.value);
+      // console.log(this.questions);
+      this.questions.map((dt: any) => {
+        dt.answer == Number(dt.selected) ? this.correctAnswerCount = this.correctAnswerCount + 1 : this.incorrectAnswerCount = this.incorrectAnswerCount + 1;
+      })
+      this.successModel = {
+        correctCount: this.correctAnswerCount,
+        incorrectCount: this.incorrectAnswerCount
+      }
+    }
+    else swalInfo('Zəhmət olmasa, CV-i daxil edin.')
   }
 
 }

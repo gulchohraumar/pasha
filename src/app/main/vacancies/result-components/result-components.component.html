@@ -1,0 +1,30 @@
+<div class="row mt-4 px-2 animate-fade-in">
+    <div class="col-md-12 bg-slate-100  rounded-lg p-5">
+        <div class="col-12 text-center">
+            <i class="text-9xl text-orange fa-regular fa-circle-check"></i>
+
+            <h4 class="mt-4 text-blue">
+                Sizin nəticəniz uğurla göndərildi.
+            </h4>
+        </div>
+
+        <div class="row gap-y-3 font-semibold mt-5 justify-content-center">
+            <div class="col-md-4 text-blue text-center">
+                <p class="text-pink text-2xl mb-2">{{data?.correctCount || 0}}</p>
+                Düzgün cavabların sayı
+            </div>
+
+            <div class="col-md-4 text-blue text-center">
+                <p class="text-pink text-2xl mb-2">{{data?.incorrectCount || 0}}</p>
+                Səhv cavabların sayı
+            </div>
+
+            <!-- <div class="col-md-4 text-center">
+                <p class="text-pink text-2xl mb-2">1</p>
+                Cavablandırılmayan sualların sayı
+            </div> -->
+
+        </div>
+
+    </div>
+</div>

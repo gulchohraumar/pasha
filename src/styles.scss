@@ -55,7 +55,7 @@ input[type=number] {
 }
 
 .main{
-    height: 95vh;
+    height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -69,7 +69,7 @@ input[type=number] {
 }
 
 .navigation{
-    height: 8vh;
+    height: 9vh;
 }
 
 .text-orange{
@@ -188,4 +188,20 @@ input[type=number] {
     display: inline-block;
     cursor: pointer;
     height: 20vh;
+}
+
+.animate-fade-in {
+    animation: setAnimation 0.7s;
+}
+
+@keyframes setAnimation {
+    0% {
+        opacity: 0.5;
+        transform: translate(0, 10%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
 }

@@ -31,7 +31,7 @@
   </div>
 
   <div class="col-md-4">
-    <div class="bg-gray-100 text-sm p-3 rounded-lg">
+    <div class="bg-slate-100 text-sm p-3 rounded-lg">
       <p class="">
         <i class="text-pink me-2 fa-sharp fa-solid fa-location-dot"></i> Ünvan: {{vacancyData!.location}}
       </p>
@@ -57,13 +57,9 @@
   </div>
 </div>
 
-<mat-stepper class="poppins-thin mt-4" [linear]="true" #stepper>
+<mat-stepper *ngIf="!successModel; else result" class="poppins-thin mt-4 pt-3" [linear]="true" #stepper>
   <mat-step [stepControl]="appealFormGroup" label="Müraciət formu">
-    <!-- <p class="text-blue font-semibold">
-      Zəhmət olmasa, müraciət formunu doldurun:
-    </p> -->
-
-    <form [formGroup]="appealFormGroup">
+      <form [formGroup]="appealFormGroup">
       <div class="row gap-y-2">
         <div class="col-md-4 pt-1">
           <div class="field mt-2">
@@ -129,8 +125,7 @@
 
       <div class="row col-12">
         <p *ngFor="let item of currentQuestionSet?.options">
-          <mat-radio-button name="fieldName" ngDefaultControl [value]="item.value"
-            [(ngModel)]="currentQuestionSet.selected"> </mat-radio-button>
+          <mat-radio-button [value]="item.value" [(ngModel)]="currentQuestionSet.selected" (change)="setAnswer($event)" name="fieldName" ngDefaultControl> </mat-radio-button>
           {{item.text}}
         </p>
       </div>
@@ -153,7 +148,6 @@
   </mat-step>
 
   <mat-step label="CV Yükləmə">
-
     <div class="row">
       <label for="file-upload"
         class="file opacity-75 custom-file-upload text-blue font-medium  d-flex align-items-center flex-column justify-content-center border-blue rounded-lg">
@@ -180,3 +174,7 @@
     </div>
   </mat-step>
 </mat-stepper>
+
+<ng-template #result>
+  <app-result-components #result [data]="successModel"></app-result-components>
+</ng-template>

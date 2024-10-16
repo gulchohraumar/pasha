@@ -1,0 +1,13 @@
+.search-field {
+    input {
+        height: 40px;
+        border-radius: 12px;
+        background-color: #fafeff;
+        font-size: 14px;
+    }
+
+    input::placeholder {
+        color: #032766;
+    }
+
+}

@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IVacancies } from 'src/app/models/IVacancies';
 import { MockDataService } from 'src/app/services/mockData.service';
 
@@ -11,11 +12,16 @@ import { MockDataService } from 'src/app/services/mockData.service';
 export class VacanciesComponent {
   vacanciesList: IVacancies[] = [];
 
-
   constructor(
+    private activatedRoute: ActivatedRoute,
     private data: MockDataService,
   ) {
-    this.vacanciesList = data.vacancies;
+    this.activatedRoute.paramMap.subscribe({
+      next: (res: any) => res.params.search ? (
+        this.vacanciesList = data.vacancies.filter((dt: IVacancies) => dt.name.toLocaleLowerCase().includes(res.params.search.toLocaleLowerCase()))
+      ) : this.vacanciesList = data.vacancies,
+      error: err => console.log(err)
+    })
   }
 
 }

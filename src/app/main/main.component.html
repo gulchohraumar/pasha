@@ -1,10 +1,15 @@
-
-
 <div class="main">
     <div class="main-background pt-5">
         <div class="navigation bg-white rounded-lg px-3 col-10 mx-auto row align-items-center shadow-md">
-            <div class="col-12">
+            <div class="col-md-9">
                 <h3 class="m-0 text-blue font-semibold">Vakansiyalar</h3>
+            </div>
+
+            <div class="col-md-3 ">
+                <div class="field search-field ">
+                    <input placeholder="Vakansiya axtar..."  (keyup)="handleKeyUp($event)" autocomplete="off" type="text" [(ngModel)]="search" id="fullname"
+                        name="fullname" />
+                </div>
             </div>
         </div>
     </div>
