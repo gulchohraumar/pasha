@@ -144,13 +144,13 @@ export class DetailsVacancyComponent {
     this.fileResult = event.target.result;
     this.fileName = event.target.files[0].name;
 
-    this.handleSend();
   }
 
   correctAnswerCount = 0;
   incorrectAnswerCount = 0;
   successModel: any;
   handleSend() {
+     if(this.file){
       this.questions.map((dt: any) => {
         dt.answer == Number(dt.selected) ? this.correctAnswerCount = this.correctAnswerCount + 1 : this.incorrectAnswerCount = this.incorrectAnswerCount + 1;
       })
@@ -159,6 +159,7 @@ export class DetailsVacancyComponent {
         incorrectCount: this.incorrectAnswerCount,
         totalCount: this.questions.length
       }
+     } else swalInfo('Zəhmət olmasa, CV-zi əlavə edin!')
   }
 
 }

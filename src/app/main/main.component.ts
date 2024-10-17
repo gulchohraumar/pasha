@@ -16,4 +16,8 @@ export class MainComponent {
     }
   }
 
+  goToUrl(){
+    window.location.href = 'https://gulchohraumarli.netlify.app/'
+  }
+
 }
